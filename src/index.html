@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <title>go_load</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Impede a rolagem */
+        }
+
+        .oswald-custom {
+            font-family: "Oswald";
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+       
+        /* Estilos para o vídeo */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+        
+        /* Estilos para o conteúdo sobreposto */
+        #content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            font-family: "Oswald";
+            color: #ffffff;
+            font-size: 24px;
+            padding: 20px;
+            margin-top: 85vh; /* Mova o elemento 30% da altura da janela de visualização para baixo */
+        }
+
+        /* Estilos para o logotipo */
+        #logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 150px;
+        }
+
+        /* Estilos para o elemento de áudio */
+        #audio-container {
+            position: absolute;
+            width: 180%;
+            text-align: center;
+            bottom: 50px;
+
+        }
+
+        /* Ajustes para o elemento de áudio */
+        audio {
+            width: 290px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Vídeo de fundo -->
+    <video id="video-background" autoplay muted loop>
+        <source src="logo/ex.mp4" type="video/mp4"> 
+    </video>
+
+    <!-- Logotipo -->
+    <img id="logo" src="logo/logo.png" alt="Logo">
+
+    <!-- Texto de carregamento -->
+    <div id="content" class="oswald-custom">
+        <p id="loadingText"></p>
+    </div>
+
+    <!-- Elemento de áudio -->
+    <div id="audio-container">
+        <audio controls autoplay>
+            <source src="logo/ex.mp3.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <script>
+        // Array de frases para exibir
+        var phrases = [
+            "Text..",
+            "Text..",
+            "Text..",
+            "Text.."
+        ];
+
+         // Índice da frase atual
+        var index = 0;
+
+        // Função para exibir a próxima frase
+        function showNextPhrase() {
+            var loadingText = document.getElementById('loadingText');
+            loadingText.textContent = phrases[index];
+            index = (index + 1) % phrases.length; // Atualiza o índice para o próximo elemento no array ou volta ao início se chegou ao final
+        }
+
+        // Exibe a primeira frase imediatamente
+        showNextPhrase();
+
+        // Intervalo (em milissegundos) entre as frases
+        var interval = 2500; // 2.5 segundos
+
+        // Chama a função para exibir as frases em intervalos regulares
+        setInterval(showNextPhrase, interval);
+    </script>
+</body>
+</html>
